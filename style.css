@@ -1,0 +1,285 @@
+/* ================= RESET & BASE ================= */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --bg-dark: #0a0a0f;
+    --neon-yellow: #fcee0a;
+    --neon-cyan: #00ffff;
+    --neon-pink: #ff00ff;
+    --text-white: #ffffff;
+    --text-gray: #b0b0b0;
+    --font-display: 'Chakra Petch', sans-serif;
+    --font-body: 'Rajdhani', sans-serif;
+}
+
+body {
+    background-color: var(--bg-dark);
+    color: var(--text-white);
+    font-family: var(--font-body);
+    font-size: 18px;
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+img {
+    max-width: 100%;
+    display: block;
+}
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* ================= TYPOGRAPHY ================= */
+.section-title {
+    font-family: var(--font-display);
+    font-size: 2.5rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 40px;
+    color: var(--text-white);
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+}
+
+.text-center { text-align: center; }
+.text-neon { color: var(--text-gray); font-size: 1.1rem; }
+
+/* ================= BUTTONS ================= */
+.btn {
+    display: inline-block;
+    padding: 15px 40px;
+    font-family: var(--font-display);
+    font-size: 1rem;
+    text-transform: uppercase;
+    text-decoration: none;
+    font-weight: 700;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+    clip-path: polygon(10% 0, 100% 0, 100% 70%, 90% 100%, 0 100%, 0 30%);
+}
+
+.btn--yellow { background-color: var(--neon-yellow); color: #000; }
+.btn--yellow:hover { background-color: var(--text-white); box-shadow: 0 0 20px var(--neon-yellow); }
+
+.btn--cyan { background-color: transparent; color: var(--neon-cyan); border: 2px solid var(--neon-cyan); }
+.btn--cyan:hover { background-color: var(--neon-cyan); color: #000; box-shadow: 0 0 20px var(--neon-cyan); }
+
+/* ================= HERO SECTION ================= */
+.hero {
+    position: relative;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background: url('img/fon.jpg') no-repeat center center/cover;
+}
+
+.hero__overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* ФИКС: Добавлен z-index */
+    z-index: 1; 
+    background: linear-gradient(to bottom, rgba(10, 10, 15, 0.4) 0%, rgba(10, 10, 15, 0.85) 100%);
+}
+
+.hero__content {
+    position: relative;
+    z-index: 2;
+    padding: 20px;
+    width: 100%;
+}
+
+.hero__title {
+    font-family: var(--font-display);
+    font-size: clamp(3rem, 8vw, 6rem);
+    color: var(--neon-yellow);
+    text-shadow: 0 0 10px var(--neon-yellow), 0 0 20px var(--neon-yellow);
+    margin-bottom: 20px;
+    /* ФИКС: Защита от переноса текста в глитче */
+    white-space: nowrap; 
+}
+
+.hero__subtitle {
+    font-family: var(--font-body);
+    font-size: 1.5rem;
+    margin-bottom: 40px;
+    color: var(--text-gray);
+}
+
+/* ================= SECTIONS ================= */
+.section { padding: 100px 0; }
+
+/* ABOUT */
+.about__grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+}
+
+.about__img {
+    border: 2px solid var(--neon-cyan);
+    box-shadow: 0 0 20px var(--neon-cyan);
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+}
+
+.stats { display: flex; gap: 40px; margin-top: 30px; }
+.stat-item { text-align: center; }
+.stat-num { display: block; font-family: var(--font-display); font-size: 2.5rem; color: var(--neon-yellow); font-weight: 900; }
+.stat-label { font-family: var(--font-body); font-size: 0.9rem; color: var(--text-gray); text-transform: uppercase; }
+
+/* GALLERY */
+.gallery__grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+
+.gallery__item {
+    position: relative;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: transform 0.3s;
+    /* ФИКС: Жесткое соотношение сторон для ровной сетки */
+    aspect-ratio: 16 / 9; 
+}
+
+.gallery__item:hover { transform: scale(1.02); border-color: var(--neon-pink); box-shadow: 0 0 15px var(--neon-pink); }
+
+.gallery__item img {
+    width: 100%;
+    height: 100%;
+    /* ФИКС: Чтобы картинка не искажалась внутри 16:9 */
+    object-fit: cover; 
+    transition: filter 0.3s;
+}
+
+.gallery__item:hover img { filter: brightness(1.2); }
+
+.gallery__overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 20px;
+    background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
+    font-family: var(--font-display);
+    font-size: 1.2rem;
+    color: var(--neon-cyan);
+    text-transform: uppercase;
+}
+
+/* PREORDER */
+.covers {
+    margin-bottom: 40px;
+    border: 2px solid var(--neon-yellow);
+    box-shadow: 0 0 30px rgba(252, 238, 10, 0.2);
+    overflow: hidden;
+}
+
+/* HARDWARE */
+.hardware__grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+}
+
+.hardware__item {
+    background: rgba(255, 255, 255, 0.03);
+    padding: 30px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between; /* Выравнивание контента */
+}
+
+.hardware__item:hover { border-color: var(--neon-cyan); box-shadow: 0 0 20px rgba(0, 255, 255, 0.2); }
+
+/* ФИКС: Ограничение размеров картинок консолей и монитора */
+.hardware__item img {
+    max-height: 250px; 
+    width: 100%;
+    object-fit: contain; 
+    margin-bottom: 20px;
+}
+
+.hardware__title { font-family: var(--font-display); color: var(--neon-cyan); margin: 10px 0; font-size: 1.3rem; }
+
+/* ================= FOOTER ================= */
+.footer { padding: 40px 0; border-top: 1px solid rgba(255, 255, 255, 0.1); text-align: center; }
+.footer__content { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px; }
+.footer__links a { color: var(--text-gray); text-decoration: none; margin-left: 20px; transition: color 0.3s; }
+.footer__links a:hover { color: var(--neon-yellow); }
+
+/* ================= GLITCH EFFECT (REWRITTEN) ================= */
+.glitch {
+    position: relative;
+}
+.glitch::before,
+.glitch::after {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--bg-dark); /* Скрывает дубликат под собой */
+}
+.glitch::before {
+    left: 2px;
+    text-shadow: -2px 0 var(--neon-cyan);
+    /* ФИКС: Используем clip-path вместо clip для адаптивности */
+    clip-path: inset(45% 0 45% 0); 
+    animation: glitch-anim 3s infinite linear alternate-reverse;
+}
+.glitch::after {
+    left: -2px;
+    text-shadow: -2px 0 var(--neon-pink);
+    clip-path: inset(45% 0 45% 0);
+    animation: glitch-anim2 3s infinite linear alternate-reverse;
+}
+
+@keyframes glitch-anim {
+    0% { clip-path: inset(10% 0 85% 0); transform: translate(-2px, 2px); }
+    20% { clip-path: inset(80% 0 5% 0); transform: translate(2px, -2px); }
+    40% { clip-path: inset(40% 0 40% 0); transform: translate(-2px, 2px); }
+    60% { clip-path: inset(25% 0 60% 0); transform: translate(2px, -2px); }
+    80% { clip-path: inset(65% 0 20% 0); transform: translate(-2px, 2px); }
+    100% { clip-path: inset(15% 0 75% 0); transform: translate(2px, -2px); }
+}
+
+@keyframes glitch-anim2 {
+    0% { clip-path: inset(75% 0 10% 0); transform: translate(2px, -2px); }
+    20% { clip-path: inset(15% 0 70% 0); transform: translate(-2px, 2px); }
+    40% { clip-path: inset(55% 0 25% 0); transform: translate(2px, -2px); }
+    60% { clip-path: inset(30% 0 50% 0); transform: translate(-2px, 2px); }
+    80% { clip-path: inset(85% 0 5% 0); transform: translate(2px, -2px); }
+    100% { clip-path: inset(5% 0 90% 0); transform: translate(-2px, 2px); }
+}
+
+/* ================= RESPONSIVE ================= */
+@media (max-width: 768px) {
+    .about__grid, .gallery__grid, .hardware__grid {
+        grid-template-columns: 1fr;
+    }
+    .section { padding: 60px 0; }
+    .section-title { font-size: 2rem; }
+    .footer__content { flex-direction: column; text-align: center; }
+    .footer__links a { margin: 0 10px; }
+    /* ФИКС: Уменьшаем отступы на мобилках */
+    .about__grid { gap: 30px; } 
+}
